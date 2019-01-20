@@ -5,9 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+@EnableHystrix  // 引入断路器模型
 @EnableEurekaClient
 @EnableDiscoveryClient
 @SpringBootApplication
@@ -19,7 +21,7 @@ public class EurekaRibbonApplication {
     }
 
     @Bean
-    @LoadBalanced
+    @LoadBalanced // 开启负载均衡 功能
     RestTemplate restTemplate(){
         return new RestTemplate();
     }
